@@ -14,7 +14,7 @@ class AccueilPage extends StatelessWidget {
         body: Column (
             children: [
               //const SizedBox(height: 10),
-              boxSection,
+              //boxSection,
               //box1Section,
               //iconSection,
             ],

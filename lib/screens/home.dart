@@ -34,9 +34,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 196, 242, 255),
+      backgroundColor: const Color.fromARGB(255, 196, 242, 255),
       appBar: AppBar(
-        title : const Center(child : Text('SJ Macau')),
+        title : const Center(child : Text('Aymeric Méteo')),
         centerTitle: true,
         actions: [
           IconButton(
@@ -44,12 +44,7 @@ class _HomeState extends State<Home> {
             onPressed:() {},
             )
         ],
-        backgroundColor:const Color.fromARGB(255,17, 34, 86),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.sports_soccer_outlined)
-          
-        ),
+        backgroundColor:const Color.fromARGB(255, 18, 138, 176),
        
       ),
       body:  tab[_currentIndex],
