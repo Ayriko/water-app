@@ -36,19 +36,19 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 196, 242, 255),
       appBar: AppBar(
-        title : const Center(child : Text('Aymeric Méteo')),
+        title : const Center(child : Text('Water App')),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications),
+            icon: Image.asset('assets/images/Quality.png'),
             onPressed:() {},
             )
         ],
-        backgroundColor:const Color.fromARGB(255, 18, 138, 176),
+        backgroundColor:Color.fromARGB(255, 95, 208, 243),
        
       ),
       body:  tab[_currentIndex],
-      bottomNavigationBar: GNav(
+      bottomNavigationBar:GNav(
         selectedIndex: _currentIndex,
         // onTap: (index) {
         //   setState(() {
@@ -67,8 +67,11 @@ class _HomeState extends State<Home> {
             _currentIndex = value;
           });
         },
-        tabs: const [
-          GButton(icon: Icons.location_on, text: 'Map',),
+        tabs:[
+          GButton(
+            icon : Icons.location_on,
+            text: 'Map',
+           ),
           GButton(icon: Icons.water_drop, text: 'Conteneur',),
           GButton(icon: Icons.home, text: 'Home',),
           GButton(icon: Icons.calendar_month, text: 'Calendar',),

@@ -1,84 +1,96 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:water_app/screens/pages/calendrier.dart';
 import 'package:water_app/screens/pages/page_accueil.dart';
+import 'dart:math' as math;
 
 class AccueilPage extends StatelessWidget {
+  
+  
   const AccueilPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 196, 242, 255),
         body: Column (
             children: [
-              //const SizedBox(height: 10),
-              //boxSection,
-              //box1Section,
-              //iconSection,
+              Title,
+              Transform.rotate(
+              angle:  0,
+              child: boxSection,
+              ),
+              box1Section,
+              box2Section,
             ],
         ),
       );
   }
 }
 
-
+Widget Title = Container(
+  height: 150,
+  child: 
+    Center(
+      child:
+        Text(
+          "Hi Username", 
+          style : GoogleFonts.paytoneOne(
+                    color:const Color.fromARGB(255, 18, 138, 176), 
+                    fontSize: 50,
+                    // fontWeight: FontWeight.w700,
+      ),
+        )
+     ,)
+    
+);
 
 
 Widget boxSection = Container(
-  height: 200,
-  width: double.infinity,
-  margin: const EdgeInsets.all(20),
-  padding: const EdgeInsets.all(20),
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(10),
-    gradient: const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [
-        Color.fromARGB(255, 140, 139, 212),
-        Color.fromARGB(255, 48, 45, 185),
-        // Color.fromARGB(255, 56, 20, 176),
-        Color.fromARGB(255,17, 34, 86),
-        Color.fromARGB(255,17, 34, 86),
-        Color.fromARGB(255,99, 24, 24)       /*(20,239, 7, 7),*/        
-      ],
-    ),
-  ),
-  child: Row( 
-    mainAxisAlignment: MainAxisAlignment.spaceBetween, 
-    children:[      
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("Dernier Match",
-          style :TextStyle(color: Colors.white, fontFamily: 'SourceSerifPro-BoldItalic.ttf', fontSize: 20, /*fontStyle: FontStyle.italic,*/ decoration: TextDecoration.underline ),
-          ),
-          Text("SJ Macau \n 2-0 \n Ambares ES",
-          textAlign: TextAlign.center,
-          style :TextStyle(color: Colors.white, fontFamily: 'SourceSerifPro-BoldItalic.ttf', fontSize: 20 ),
-          ),
-          Icon(Icons.check,color: Colors.green, size: 30)
+child: Image.asset('assets/images/Water.png'),
+);
 
-        ],
-      ), 
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("05/02/2023",
-          textAlign: TextAlign.center,
-          style :TextStyle(color: Colors.white, fontFamily: 'SourceSerifPro-BoldItalic.ttf', fontSize: 20 )
-          ),
-          const Text("SJ Macau \n VS \n FC APM",
-          textAlign: TextAlign.center,
-          style :TextStyle(color: Colors.white, fontFamily: 'SourceSerifPro-BoldItalic.ttf', fontSize: 20 ),
-          ),
-          Text("Prochain Match",
-          style :TextStyle(color: Colors.white, fontFamily: 'SourceSerifPro-BoldItalic.ttf',fontSize: 20, /*fontStyle: FontStyle.italic,*/ decoration: TextDecoration.underline ),
-          ),
-        ],
-      )
-    ],
-  ),
+
+Widget box1Section = Container (
+  margin: EdgeInsets.only(top: 20),
+  decoration: 
+    BoxDecoration(
+      borderRadius: 
+        BorderRadius.circular(15), 
+        color: const Color.fromARGB(255, 18, 138, 176) 
+    ),
+  width: 250, 
+  padding: EdgeInsets.all(20),  
+  child: 
+    Text(
+      '0.8L/1.5L in your bottle', 
+      textAlign: TextAlign.center, 
+      style : GoogleFonts.paytoneOne(
+        color:const Color.fromARGB(255, 196, 242, 255), 
+        fontSize: 15,
+        // fontWeight: FontWeight.w700,
+      ),
+    ),
+);
+
+Widget box2Section = Container (
+  margin: EdgeInsets.only(top: 20),
+  decoration: 
+    BoxDecoration(
+      borderRadius: BorderRadius.circular(15), 
+      color: const Color.fromARGB(255, 18, 138, 176) 
+    ),
+  width: 250, 
+  padding: EdgeInsets.all(20),
+  child: 
+    Text(
+      'Is still your fisrt bottle ? You need to drink more',
+      textAlign: TextAlign.center,
+      style : GoogleFonts.paytoneOne(
+        color:const Color.fromARGB(255, 196, 242, 255), 
+        fontSize: 15,
+        // fontWeight: FontWeight.w700,
+      ),        
+    ),    
 );
