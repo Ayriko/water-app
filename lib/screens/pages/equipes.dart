@@ -8,6 +8,6 @@ class Equipes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Les equipes Bouffon !'));
+    return const Center(child: Text('Les equipes !'));
   }
 }

@@ -9,6 +9,6 @@ class Calendrier extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Calendrier Bouffon"));
+    return const Center(child: Text("Calendrier"));
   }
 }

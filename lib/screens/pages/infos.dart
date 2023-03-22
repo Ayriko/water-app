@@ -8,6 +8,6 @@ class Infos extends StatelessWidget {
   const Infos({super.key});
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Infos Pute !'));
+    return const Center(child: Text('Infos !'));
   }
 }
