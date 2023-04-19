@@ -14,6 +14,18 @@ class AccueilPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 196, 242, 255),
+      appBar: AppBar(
+        title : const Center(child : Text('Water App')),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Image.asset('assets/images/Quality.png'),
+            onPressed:() {},
+            )
+        ],
+        backgroundColor:Color.fromARGB(255, 95, 208, 243),
+       
+      ),
         body: Column (
             children: [
               Title,

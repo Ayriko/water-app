@@ -80,6 +80,7 @@ flutter:
     - assets/images/Mineral water.png
     - assets/images/Settings.png
     - assets/images/Water.png
+    - assets/images/profil.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
