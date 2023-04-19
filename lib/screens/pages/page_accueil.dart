@@ -1,10 +1,5 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:water_app/screens/pages/calendrier.dart';
-import 'package:water_app/screens/pages/page_accueil.dart';
-import 'dart:math' as math;
 
 class AccueilPage extends StatelessWidget {
   const AccueilPage({super.key});

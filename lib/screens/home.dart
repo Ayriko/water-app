@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:water_app/screens/pages/map.dart';
+import 'package:water_app/screens/pages/boutique.dart';
 import 'package:water_app/screens/pages/calendrier.dart';
 import 'package:water_app/screens/pages/equipes.dart';
 import 'package:water_app/screens/pages/infos.dart';
