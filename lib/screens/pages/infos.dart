@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Infos extends StatefulWidget {
   Infos({super.key});
@@ -19,8 +20,9 @@ class _InfosState extends State<Infos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 196, 242, 255),
       appBar: AppBar(
-          title: const Text('Page de Profil'),
+          title: const Text('Paramètres'),
           backgroundColor: Color.fromARGB(255, 95, 208, 243),
           centerTitle: true,
           actions: [
@@ -41,81 +43,79 @@ class _InfosState extends State<Infos> {
               },
               child: ListView(
                 children: [
-                  Center(
-                      child: Stack(
-                    children: [
-                      Container(
-                        width: 130,
-                        height: 130,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 4, color: Colors.white),
-                            boxShadow: [
-                              BoxShadow(
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  color: Colors.black.withOpacity(0.1))
-                            ],
-                            shape: BoxShape.circle,
-                            image: const DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://st.depositphotos.com/2101611/3925/v/450/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg'),
-                            )),
-                      ),
-                      Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 4, color: Colors.white),
-                                color: Colors.blue,
-                              ),
-                              child: const Icon(
-                                Icons.edit,
-                                color: Colors.white,
-                              ))),
-                    ],
-                  )),
-                  SizedBox(height: 30),
-                  buildTextField("Nom", "Demon", false),
-                  buildTextField("Email", "demon@gmail.com", false),
-                  buildTextField("Mot de Passe", "*********", true),
+                  const SizedBox(height: 20),
+                  Container(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "Données Personnelles",
+                          style: GoogleFonts.paytoneOne(
+                            color: const Color.fromARGB(255, 18, 138, 176),
+                            fontSize: 20,
+                            // fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      )),
+                  const SizedBox(height: 15),
+                  buildTextField("Nom", "Username", false),
+                  buildTextField("Email", "username@gmail.com", false),
                   buildTextField("Localisation", "Bordeaux", false),
-                  SizedBox(height: 30),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(horizontal: 50),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20))),
-                        child: const Text("CANCEL",
-                            style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 2,
-                                color: Colors.black)),
+                      Text(
+                        "Supprimer les données de l'appareil",
+                        style: GoogleFonts.paytoneOne(
+                          color: const Color.fromARGB(255, 18, 138, 176),
+                          fontSize: 15,
+                          // fontWeight: FontWeight.w700,
+                        ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.blue,
-                              padding: EdgeInsets.symmetric(horizontal: 50),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20))),
-                          child: const Text("SAVE",
-                              style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 2,
-                                color: Colors.white,
-                              )))
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () {},
+                      )
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 30),
+                  Container(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "Notifications",
+                          style: GoogleFonts.paytoneOne(
+                            color: const Color.fromARGB(255, 18, 138, 176),
+                            fontSize: 20,
+                            // fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      )),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Text(
+                        "Activer les notifications ?",
+                        style: GoogleFonts.paytoneOne(
+                          color: const Color.fromARGB(255, 18, 138, 176),
+                          fontSize: 15,
+                          // fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.notifications_active),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 150),
+                  Text(
+                    "Support",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.paytoneOne(
+                      color: const Color.fromARGB(255, 18, 138, 176),
+                      fontSize: 15,
+                      // fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ],
               ))),
     );
@@ -124,29 +124,32 @@ class _InfosState extends State<Infos> {
   Widget buildTextField(
       String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 30),
-      child: TextField(
-        obscureText: isPasswordTextField ? isObscurePassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    icon: Icon(Icons.remove_red_eye, color: Colors.grey),
-                    onPressed: () {
-                      setState(() {
-                        isObscurePassword = !isObscurePassword;
-                      });
-                    })
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 5),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-            )),
-      ),
-    );
+        padding: EdgeInsets.only(bottom: 30),
+        child: TextField(
+            obscureText: isPasswordTextField ? isObscurePassword : false,
+            decoration: InputDecoration(
+                suffixIcon: isPasswordTextField
+                    ? IconButton(
+                        icon: Icon(Icons.remove_red_eye, color: Colors.white),
+                        onPressed: () {
+                          setState(() {
+                            isObscurePassword = !isObscurePassword;
+                          });
+                        })
+                    : null,
+                contentPadding: EdgeInsets.only(bottom: 5),
+                labelText: labelText,
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                hintText: placeholder,
+                hintStyle: const TextStyle(
+                  fontSize: 16,
+                  fontStyle: FontStyle.italic,
+                  color: Color.fromARGB(255, 18, 138, 176),
+                ),
+                icon: IconButton(
+                  icon: Icon(Icons.check,
+                      color: const Color.fromARGB(255, 18, 138, 176)),
+                  onPressed: () {},
+                ))));
   }
 }

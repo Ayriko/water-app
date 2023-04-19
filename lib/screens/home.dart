@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:water_app/screens/pages/boutique.dart';
-import 'package:water_app/screens/pages/calendrier.dart';
-import 'package:water_app/screens/pages/equipes.dart';
+import 'package:water_app/screens/pages/map.dart';
 import 'package:water_app/screens/pages/infos.dart';
 import 'package:water_app/screens/pages/page_accueil.dart';
+import 'package:water_app/screens/pages/test_raph.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -24,27 +23,19 @@ class _HomeState extends State<Home> {
   }
 
   static List<Widget> tab = [
-    Boutique(),
-    Equipes(),
+    MyMap(),
     AccueilPage(),
-    Calendrier(),
     Infos(),
+    Test(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 196, 242, 255),
-      body:  tab[_currentIndex],
-      bottomNavigationBar:GNav(
+      body: tab[_currentIndex],
+      bottomNavigationBar: GNav(
         selectedIndex: _currentIndex,
-        // onTap: (index) {
-        //   setState(() {
-        //     _currentIndex = index;
-        //   });
-
-        //   _pageController.jumpToPage(_currentIndex);
-        // },
         backgroundColor: const Color(0x00ffffff),
         gap: 15,
         color: const Color.fromARGB(255, 18, 138, 176),
@@ -61,20 +52,16 @@ class _HomeState extends State<Home> {
             text: 'Map',
           ),
           GButton(
-            icon: Icons.water_drop,
-            text: 'Conteneur',
-          ),
-          GButton(
             icon: Icons.home,
             text: 'Home',
           ),
           GButton(
-            icon: Icons.calendar_month,
-            text: 'Calendar',
-          ),
-          GButton(
             icon: Icons.settings,
             text: 'Settings',
+          ),
+          GButton(
+            icon: Icons.school_outlined,
+            text: 'Test',
           )
         ],
       ),
