@@ -11,18 +11,18 @@ class Boutique extends StatelessWidget {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
+
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      home: Scaffold(
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 14.0,
-          ),
+    return MaterialApp(
+        home: Scaffold(
+      body: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: _center,
+          zoom: 14.0,
         ),
-      )
-    );
+      ),
+    ));
   }
 }

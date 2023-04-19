@@ -5,6 +5,18 @@ class Calendrier extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Calendrier"));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Water App')),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Image.asset('assets/images/Quality.png'),
+            onPressed: () {},
+          )
+        ],
+        backgroundColor: Color.fromARGB(255, 95, 208, 243),
+      ),
+    );
   }
 }

@@ -35,19 +35,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 196, 242, 255),
-      appBar: AppBar(
-        title: const Center(child: Text('Water App')),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Image.asset('assets/images/Quality.png'),
-            onPressed: () {},
-          )
-        ],
-        backgroundColor: Color.fromARGB(255, 95, 208, 243),
-      ),
-      body: tab[_currentIndex],
-      bottomNavigationBar: GNav(
+      body:  tab[_currentIndex],
+      bottomNavigationBar:GNav(
         selectedIndex: _currentIndex,
         // onTap: (index) {
         //   setState(() {
