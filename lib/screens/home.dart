@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final PageController _pageController = PageController(initialPage: 0);
-  int _currentIndex = 2;
+  int _currentIndex = 1;
 
   @override
   void dispose() {

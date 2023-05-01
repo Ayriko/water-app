@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+//import 'package:geolocator/geolocator.dart';
 
 class MyMap extends StatefulWidget {
   @override
@@ -12,12 +13,17 @@ class _MyMapState extends State<MyMap> {
   //MyMap({super.key});
 
   late GoogleMapController mapController;
+  //LatLng? _currentPosition;
+  //bool _isLoading = true;
   List<Marker> _markers = [];
   final LatLng _center =
       const LatLng(44.837789, -0.57918); //centrer sur position du user
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+ @override
+  void initState() {
+    super.initState();
+    //getLocation();
+    _fetchFountains();
   }
 
   Future<void> _fetchFountains() async {
@@ -49,10 +55,25 @@ class _MyMapState extends State<MyMap> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchFountains();
+ /* getLocation() async {
+    LocationPermission permission;
+    permission = await Geolocator.requestPermission();
+
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    double lat = position.latitude;
+    double long = position.longitude;
+
+    LatLng location = LatLng(lat, long);
+
+    setState(() {
+      _currentPosition = location;
+      _isLoading = false;
+    });
+  }*/
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
   }
 
   @override
