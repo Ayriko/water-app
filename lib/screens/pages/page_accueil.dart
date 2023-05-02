@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class AccueilPage extends StatelessWidget {
-  const AccueilPage({super.key});
+  final _myBox = Hive.box('waterApp');
+  AccueilPage({super.key});
+  
   @override
   Widget build(BuildContext context) {
+    String name = _myBox.get('username', defaultValue: 'username');
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 196, 242, 255),
       appBar: AppBar(
@@ -20,7 +25,20 @@ class AccueilPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          title,
+          Container(
+            height: 150,
+            child: Center(
+              child: Text(
+        // ignore: prefer_interpolation_to_compose_strings
+                "Hi " + name,
+                style: GoogleFonts.paytoneOne(
+                color: const Color.fromARGB(255, 18, 138, 176),
+                fontSize: 50,
+          // fontWeight: FontWeight.w700,
+        ),
+      ),
+    ),
+  ),
           Transform.rotate(
             angle: 0,
             child: boxSection,
@@ -33,18 +51,7 @@ class AccueilPage extends StatelessWidget {
   }
 }
 
-Widget title = Container(
-    height: 150,
-    child: Center(
-      child: Text(
-        "Hi Username",
-        style: GoogleFonts.paytoneOne(
-          color: const Color.fromARGB(255, 18, 138, 176),
-          fontSize: 50,
-          // fontWeight: FontWeight.w700,
-        ),
-      ),
-    ));
+
 
 Widget boxSection = Container(
   child: Image.asset('assets/images/Water.png'),
@@ -85,3 +92,4 @@ Widget box2Section = Container(
     ),
   ),
 );
+//ajouter les deux boutons remplir/vider

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 
 class Infos extends StatefulWidget {
   Infos({super.key});
@@ -10,6 +11,7 @@ class Infos extends StatefulWidget {
 
 class _InfosState extends State<Infos> {
   bool isObscurePassword = true;
+  final _myBox = Hive.box('waterApp');
 
   @override
   void initState() {
@@ -19,6 +21,7 @@ class _InfosState extends State<Infos> {
 
   @override
   Widget build(BuildContext context) {
+    String name = _myBox.get('username', defaultValue: 'username');
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 196, 242, 255),
       appBar: AppBar(
@@ -57,7 +60,7 @@ class _InfosState extends State<Infos> {
                         ),
                       )),
                   const SizedBox(height: 15),
-                  buildTextField("Nom", "Username", false),
+                  buildTextField("Nom", name, false),
                   buildTextField("Email", "username@gmail.com", false),
                   buildTextField("Localisation", "Bordeaux", false),
                   Row(
