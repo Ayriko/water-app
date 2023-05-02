@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:water_app/notification_service.dart';
 
 class Infos extends StatefulWidget {
   Infos({super.key});
@@ -102,6 +104,26 @@ class _InfosState extends State<Infos> {
                       ),
                       IconButton(
                         icon: Icon(Icons.notifications_active),
+                        onPressed: () {
+                          NotificationService().showNotification(
+                            title: 'Nique ta mère !', body: 'OUAIS OUAIS OUAIS T AS COMPRIS BATARD !',
+                          );
+                        }
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Désactiver les notifications ?",
+                        style: GoogleFonts.paytoneOne(
+                          color: const Color.fromARGB(255, 18, 138, 176),
+                          fontSize: 15,
+                          // fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.notifications_off),
                         onPressed: () {},
                       )
                     ],
@@ -153,3 +175,4 @@ class _InfosState extends State<Infos> {
                 ))));
   }
 }
+
