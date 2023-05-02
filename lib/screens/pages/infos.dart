@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:water_app/notification_service.dart';
+import 'package:hive/hive.dart';
 
 class Infos extends StatefulWidget {
   Infos({super.key});
@@ -11,7 +10,28 @@ class Infos extends StatefulWidget {
 }
 
 class _InfosState extends State<Infos> {
-  bool isObscurePassword = true;
+  TextEditingController _textController1 = TextEditingController();
+  TextEditingController _textController2 = TextEditingController();
+  TextEditingController _textController3 = TextEditingController();
+  final _myBox = Hive.box('waterApp');
+
+  void _saveValueName(String value) {
+    _myBox.put('username', value);
+    _textController1.clear();
+    setState(() {});
+  }
+
+  void _saveValueMail(String value) {
+    _myBox.put('email', value);
+    _textController2.clear();
+    setState(() {});
+  }
+
+  void _saveValueLocal(String value) {
+    _myBox.put('location', value);
+    _textController3.clear();
+    setState(() {});
+  }
 
   @override
   void initState() {
@@ -21,6 +41,9 @@ class _InfosState extends State<Infos> {
 
   @override
   Widget build(BuildContext context) {
+    String name = _myBox.get('username', defaultValue: 'username');
+    String email = _myBox.get('email', defaultValue: 'mail@mail');
+    String local = _myBox.get('location', defaultValue: 'bordeaux');
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 196, 242, 255),
       appBar: AppBar(
@@ -58,10 +81,73 @@ class _InfosState extends State<Infos> {
                           ),
                         ),
                       )),
+
                   const SizedBox(height: 15),
-                  buildTextField("Nom", "Username", false),
-                  buildTextField("Email", "username@gmail.com", false),
-                  buildTextField("Localisation", "Bordeaux", false),
+                  TextField(
+                    controller: _textController1,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(bottom: 5),
+                      labelText: "Nom/Username",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: name,
+                      hintStyle: const TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        color: Color.fromARGB(255, 18, 138, 176),
+                      ),
+                      icon: IconButton(
+                        icon: Icon(Icons.check,
+                            color: const Color.fromARGB(255, 18, 138, 176)),
+                        onPressed: () => _saveValueName(_textController1.text),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 15),
+                  TextField(
+                    controller: _textController2,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(bottom: 5),
+                      labelText: "Adresse Mail",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: email,
+                      hintStyle: const TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        color: Color.fromARGB(255, 18, 138, 176),
+                      ),
+                      icon: IconButton(
+                        icon: Icon(Icons.check,
+                            color: const Color.fromARGB(255, 18, 138, 176)),
+                        onPressed: () => _saveValueMail(_textController2.text),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 15),
+                  TextField(
+                    controller: _textController3,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(bottom: 5),
+                      labelText: "Localisation",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: local,
+                      hintStyle: const TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        color: Color.fromARGB(255, 18, 138, 176),
+                      ),
+                      icon: IconButton(
+                        icon: Icon(Icons.check,
+                            color: const Color.fromARGB(255, 18, 138, 176)),
+                        onPressed: () => _saveValueLocal(_textController3.text),
+                      ),
+                    ),
+                  ),
+                  //buildTextField("Nom", name, false),
+                  //buildTextField("Email", "username@gmail.com", false),
+                  //buildTextField("Localisation", "Bordeaux", false),
+                  
                   Row(
                     children: [
                       Text(
@@ -104,11 +190,7 @@ class _InfosState extends State<Infos> {
                       ),
                       IconButton(
                         icon: Icon(Icons.notifications_active),
-                        onPressed: () {
-                          NotificationService().showNotification(
-                            title: 'Nique ta mère !', body: 'OUAIS OUAIS OUAIS T AS COMPRIS BATARD !',
-                          );
-                        }
+                        onPressed: () {}
                       )
                     ],
                   ),
@@ -128,51 +210,9 @@ class _InfosState extends State<Infos> {
                       )
                     ],
                   ),
-                  const SizedBox(height: 150),
-                  Text(
-                    "Support",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.paytoneOne(
-                      color: const Color.fromARGB(255, 18, 138, 176),
-                      fontSize: 15,
-                      // fontWeight: FontWeight.w700,
-                    ),
-                  ),
                 ],
               ))),
     );
-  }
-
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Padding(
-        padding: EdgeInsets.only(bottom: 30),
-        child: TextField(
-            obscureText: isPasswordTextField ? isObscurePassword : false,
-            decoration: InputDecoration(
-                suffixIcon: isPasswordTextField
-                    ? IconButton(
-                        icon: Icon(Icons.remove_red_eye, color: Colors.white),
-                        onPressed: () {
-                          setState(() {
-                            isObscurePassword = !isObscurePassword;
-                          });
-                        })
-                    : null,
-                contentPadding: EdgeInsets.only(bottom: 5),
-                labelText: labelText,
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                hintText: placeholder,
-                hintStyle: const TextStyle(
-                  fontSize: 16,
-                  fontStyle: FontStyle.italic,
-                  color: Color.fromARGB(255, 18, 138, 176),
-                ),
-                icon: IconButton(
-                  icon: Icon(Icons.check,
-                      color: const Color.fromARGB(255, 18, 138, 176)),
-                  onPressed: () {},
-                ))));
   }
 }
 

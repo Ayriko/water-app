@@ -4,8 +4,7 @@ import 'package:water_app/screens/home.dart';
 
 void main() async {
   await Hive.initFlutter();
-
-  var _hiveBox = await Hive.openBox('myBox');
+  final box = await Hive.openBox('waterApp');
 
   runApp(const App());
 }

@@ -13,8 +13,7 @@ class _MyMapState extends State<MyMap> {
   //MyMap({super.key});
 
   late GoogleMapController mapController;
-  //LatLng? _currentPosition;
-  //bool _isLoading = true;
+  LatLng? _currentPosition;
   List<Marker> _markers = [];
   final LatLng _center =
       const LatLng(44.837789, -0.57918); //centrer sur position du user
@@ -22,7 +21,7 @@ class _MyMapState extends State<MyMap> {
  @override
   void initState() {
     super.initState();
-    //getLocation();
+    //_getCurrentLocation();
     _fetchFountains();
   }
 
@@ -55,20 +54,13 @@ class _MyMapState extends State<MyMap> {
     }
   }
 
- /* getLocation() async {
-    LocationPermission permission;
-    permission = await Geolocator.requestPermission();
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    double lat = position.latitude;
-    double long = position.longitude;
-
-    LatLng location = LatLng(lat, long);
+ /*Future<void> _getCurrentLocation() async {
+    final position = await Geolocator.getCurrentPosition();
+    final latitude = position.latitude;
+    final longitude = position.longitude;
 
     setState(() {
-      _currentPosition = location;
-      _isLoading = false;
+      _currentLocation = LatLng(latitude, longitude);
     });
   }*/
 
