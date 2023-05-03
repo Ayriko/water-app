@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
@@ -13,6 +15,7 @@ class _InfosState extends State<Infos> {
   TextEditingController _textController1 = TextEditingController();
   TextEditingController _textController2 = TextEditingController();
   TextEditingController _textController3 = TextEditingController();
+  TextEditingController _textController4 = TextEditingController();
   final _myBox = Hive.box('waterApp');
 
   void _saveValueName(String value) {
@@ -33,6 +36,12 @@ class _InfosState extends State<Infos> {
     setState(() {});
   }
 
+  void _saveValueW(String value) {
+    _myBox.put('volume', double.parse(value));
+    _textController4.clear();
+    setState(() {});
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -44,6 +53,7 @@ class _InfosState extends State<Infos> {
     String name = _myBox.get('username', defaultValue: 'username');
     String email = _myBox.get('email', defaultValue: 'mail@mail');
     String local = _myBox.get('location', defaultValue: 'bordeaux');
+    double volume = _myBox.get('volume', defaultValue: 1.0);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 196, 242, 255),
       appBar: AppBar(
@@ -81,7 +91,6 @@ class _InfosState extends State<Infos> {
                           ),
                         ),
                       )),
-
                   const SizedBox(height: 15),
                   TextField(
                     controller: _textController1,
@@ -102,7 +111,6 @@ class _InfosState extends State<Infos> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 15),
                   TextField(
                     controller: _textController2,
@@ -123,7 +131,6 @@ class _InfosState extends State<Infos> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 15),
                   TextField(
                     controller: _textController3,
@@ -144,10 +151,26 @@ class _InfosState extends State<Infos> {
                       ),
                     ),
                   ),
-                  //buildTextField("Nom", name, false),
-                  //buildTextField("Email", "username@gmail.com", false),
-                  //buildTextField("Localisation", "Bordeaux", false),
-                  
+                  const SizedBox(height: 15),
+                  TextField(
+                    controller: _textController4,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(bottom: 5),
+                      labelText: "Volume max de votre bouteille",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: volume.toString(),
+                      hintStyle: const TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                        color: Color.fromARGB(255, 18, 138, 176),
+                      ),
+                      icon: IconButton(
+                        icon: Icon(Icons.check,
+                            color: const Color.fromARGB(255, 18, 138, 176)),
+                        onPressed: () => _saveValueW(_textController4.text),
+                      ),
+                    ),
+                  ),
                   Row(
                     children: [
                       Text(
@@ -189,7 +212,22 @@ class _InfosState extends State<Infos> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.notifications_active),
+                          icon: Icon(Icons.notifications_active),
+                          onPressed: () {})
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Désactiver les notifications ?",
+                        style: GoogleFonts.paytoneOne(
+                          color: const Color.fromARGB(255, 18, 138, 176),
+                          fontSize: 15,
+                          // fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.notifications_off),
                         onPressed: () {},
                       )
                     ],

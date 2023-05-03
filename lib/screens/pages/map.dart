@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:geolocator/geolocator.dart';
 
 class MyMap extends StatefulWidget {
   @override
@@ -11,16 +10,14 @@ class MyMap extends StatefulWidget {
 
 class _MyMapState extends State<MyMap> {
   late GoogleMapController mapController;
-  LatLng? _currentLocation = const LatLng(44.837789, -0.57918);
   List<Marker> _markers = [];
   final LatLng _center =
-      const LatLng(44.837789, -0.57918); //centrer sur position du user
+      const LatLng(44.837789, -0.57918);
 
  @override
   void initState() {
     super.initState();
     _fetchFountains();
-    _getCurrentLocation();
   }
 
   Future<void> _fetchFountains() async {
@@ -52,20 +49,6 @@ class _MyMapState extends State<MyMap> {
     }
   }
 
- Future<void> _getCurrentLocation() async {
-    final position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    final latitude = position.latitude;
-    final longitude = position.longitude;
-
-    setState(() {
-      _currentLocation = LatLng(latitude, longitude);
-    });
-  }
-
-   void _onCameraMove(CameraPosition position) {
-    _currentLocation = position.target;
-  }
-
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
@@ -78,18 +61,15 @@ class _MyMapState extends State<MyMap> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: GoogleMap(
         onMapCreated: _onMapCreated,
-        onCameraMove: _onCameraMove,
         markers: _markers.toSet(),
         initialCameraPosition: CameraPosition(
-          target: _currentLocation as LatLng,
+          target: _center,
           zoom: 15.0,
         ),
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
-        mapType: MapType.normal,
       ),
     );
   }

@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
     MyMap(),
     AccueilPage(),
     Infos(),
-    Test(),
+    //Test(),
   ];
 
   @override
@@ -58,11 +58,11 @@ class _HomeState extends State<Home> {
           GButton(
             icon: Icons.settings,
             text: 'Settings',
-          ),
+          )/*,
           GButton(
             icon: Icons.school_outlined,
             text: 'Test',
-          )
+          )*/
         ],
       ),
     );
